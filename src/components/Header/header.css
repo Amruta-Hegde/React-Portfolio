@@ -1,0 +1,27 @@
+nav {
+  background: linear-gradient(50deg, #8121d0, #331c52);
+}
+.navbar-light .navbar-nav .nav-link {
+  color: white;
+  font-weight: 500;
+}
+.navbar-light .navbar-brand {
+    color: white !important;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    justify-content: flex-end !important;
+  }
+}
+.navbar-toggler {
+    padding: 0.20rem 0.70rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    color: white;
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    transition: box-shadow .15s ease-in-out;
+}
