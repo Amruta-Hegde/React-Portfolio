@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Home.css";
 import myPhoto from "../assets/images/myphoto.jpg";
 import htmlIcon from "../assets/images/html.png";
@@ -13,25 +13,29 @@ import jiraICon from "../assets/images/jira.png";
 import emailIcon from "../assets/images/email.webp";
 import phoneIcon from "../assets/images/phone.png";
 import locationIcon from "../assets/images/location-sign.svg";
+import Header from "../components/Header/Header";
 
 const Home = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    mobileNumber: '',
-    companyName: '',
-    message: ''
-});
-
-const handleChange = (e) => {
+    name: "",
+    email: "",
+    mobileNumber: "",
+    companyName: "",
+    message: "",
+  });
+  const homeRef = useRef(null);
+  const skillRef = useRef(null);
+  const aboutRef = useRef(null);
+  const contactRef = useRef(null);
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-};
+  };
 
-const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
-};
+  };
 
   const skills = [
     { name: "HTML", percentage: 100 },
@@ -43,12 +47,17 @@ const handleSubmit = (e) => {
     { name: "WordPress", percentage: 80 },
   ];
 
-  
   return (
     <div className="body-bg">
+      <Header
+        homeRef={homeRef}
+        skillRef={skillRef}
+        aboutRef={aboutRef}
+        contactRef={contactRef}
+      />
       {/* Poster */}
       <div className="container">
-        <div className="text-bounce">
+        <div className="text-bounce" ref={homeRef}>
           <div className="row align-items-center">
             <div className="col-md-7 col-sm-11 text-center">
               <div className="d-flex align-items-center poster">
@@ -63,7 +72,11 @@ const handleSubmit = (e) => {
             </div>
             <div className="col-md-5 col-sm-11">
               <div className="d-flex align-items-center poster my-5 ">
-                <img src={myPhoto} alt="img" className="img-fluid img-circle" />
+                <img
+                  src={myPhoto}
+                  alt="myphoto"
+                  className="img-fluid img-circle"
+                />
               </div>
             </div>
           </div>
@@ -90,63 +103,63 @@ const handleSubmit = (e) => {
               <div class="d-flex flex-wrap flex-xl-nowrap">
                 <img
                   src={htmlIcon}
-                  alt="img"
+                  alt="html-icon"
                   className="img-fluid mx-2 mx-lg-3 my-3"
                   width={50}
                   height={50}
                 />
                 <img
                   src={cssIcon}
-                  alt="img"
+                  alt="css-icon"
                   className="img-fluid mx-2 mx-lg-3 my-3"
                   width={50}
                   height={50}
                 />
                 <img
                   src={scssIcon}
-                  alt="img"
+                  alt="scss-icon"
                   className="img-fluid mx-2 mx-lg-3 my-3"
                   width={50}
                   height={50}
                 />
                 <img
                   src={jsIcon}
-                  alt="img"
+                  alt="js-icon"
                   className="img-fluid mx-2 mx-lg-3 my-3"
                   width={50}
                   height={50}
                 />
                 <img
                   src={reactIcon}
-                  alt="img"
+                  alt="react-icon"
                   className="img-fluid mx-2 mx-lg-3 my-3"
                   width={50}
                   height={50}
                 />
                 <img
                   src={phpIcon}
-                  alt="img"
+                  alt="php-icon"
                   className="img-fluid mx-2 mx-lg-3 my-3"
                   width={50}
                   height={50}
                 />
                 <img
                   src={wordPressIcon}
-                  alt="img"
+                  alt="wordpress-icon"
                   className="img-fluid mx-2 mx-lg-3 my-3"
                   width={50}
                   height={50}
                 />
                 <img
                   src={gitIcon}
-                  alt="img"
+                  alt="git-icon"
                   className="img-fluid mx-2 mx-lg-3 my-3"
                   width={50}
                   height={50}
                 />
                 <img
                   src={jiraICon}
-                  alt="img"
+                  alt="jira-icon"
                   className="img-fluid mx-2 mx-lg-3 my-3"
                   width={50}
                   height={50}
@@ -157,7 +170,7 @@ const handleSubmit = (e) => {
         </div>
       </div>
 
-      <div className="about-bg">
+      <div className="about-bg" ref={aboutRef}>
         <div className="container">
           <div className="row  py-5 ">
             <div className="col-xl-4 col-md-12 text-center text-lg-start">
@@ -199,7 +212,13 @@ const handleSubmit = (e) => {
                     my personal and professional growth.
                   </p>
                   <button className="px-4 py-3 my-5 dwnld-btn">
-                    Download Resume
+                    <a
+                      className="text-light text-decoration-none"
+                      href="../resume/Amruta-Hegde-Reume.pdf"
+                      target="_blank"
+                    >
+                      Download Resume
+                    </a>
                   </button>
                 </div>
               </div>
@@ -209,9 +228,9 @@ const handleSubmit = (e) => {
       </div>
 
       {/* Skills */}
-      <div className="">
+      <div>
         <div className="container">
-          <div className="row  py-5">
+          <div className="row  py-5" ref={skillRef}>
             <div className="col-md-12">
               <div className="d-flex justify-content-center">
                 <h2 className="text-with-shadow pt-5">Skills</h2>
@@ -269,61 +288,66 @@ const handleSubmit = (e) => {
       </div>
 
       {/* Contact Form */}
-      <div className="about-bg">
+      <div className="about-bg" ref={contactRef}>
         <div className="container">
           <div className="row justify-content-center py-5 ">
-            <div className="col-xl-9 col-md-10 text-center">
+            <div className="col-xl-9 col-md-10 col-sm-10 text-center">
               <div className="row box-shadow">
-                <div className="col-md-6 dark-purple-bg">
+                <div className="col-lg-6 ol-md-5 dark-purple-bg">
                   <div className="py-4 px-3">
                     <h4 className="text-white py-3">Send Message</h4>
                     <div className="form-group">
-            <input
-                type="text"
-                className="form-control transparent-input my-4"
-                placeholder="Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-                className="form-control transparent-input my-4"
-                placeholder="Email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-                className="form-control transparent-input my-4"
-                placeholder="Mobile Number"
-                name="mobileNumber"
-                value={formData.mobileNumber}
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-                className="form-control transparent-input my-4"
-                placeholder="Company Name"
-                name="companyName"
-                value={formData.companyName}
-                onChange={handleChange}
-            />
-            <textarea
-                rows="4"
-                className="form-control transparent-input my-4"
-                placeholder="Message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-            ></textarea>
-            <button className="px-5 py-2 my-3 send-btn" onClick={handleSubmit}>Send</button>
-        </div>
+                      <input
+                        type="text"
+                        className="form-control transparent-input my-4"
+                        placeholder="Name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                      />
+                      <input
+                        type="text"
+                        className="form-control transparent-input my-4"
+                        placeholder="Email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                      />
+                      <input
+                        type="text"
+                        className="form-control transparent-input my-4"
+                        placeholder="Mobile Number"
+                        name="mobileNumber"
+                        value={formData.mobileNumber}
+                        onChange={handleChange}
+                      />
+                      <input
+                        type="text"
+                        className="form-control transparent-input my-4"
+                        placeholder="Company Name"
+                        name="companyName"
+                        value={formData.companyName}
+                        onChange={handleChange}
+                      />
+                      <textarea
+                        rows="4"
+                        className="form-control transparent-input my-4"
+                        placeholder="Message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                      ></textarea>
+                      <button
+                        className="px-5 py-2 my-3 send-btn"
+                        onClick={handleSubmit}
+                      >
+                        Send
+                      </button>
+                    </div>
                   </div>
                 </div>
-                <div className="col-md-6 bg-white">
-                  <div className="p-5">
+                <div className="col-lg-6 col-md-12 bg-white">
+                  <div className="p-3 p-xl-5">
                     <h4 className="">Contact Me</h4>
                     <p className="pt-3">
                       We're open for any suggestion or just to have a chat
@@ -336,8 +360,8 @@ const handleSubmit = (e) => {
                           class="circle-icon p-2"
                         />
                       </div>
-                      <div className="px-4">
-                        <span className="fw-bold pr-5">Email:</span>{" "}
+                      <div className="ps-4 ">
+                        <span className="fw-bold">Email:</span>{" "}
                         amrutahegde01@gmail.com
                       </div>
                     </div>
@@ -349,11 +373,11 @@ const handleSubmit = (e) => {
                           class="circle-icon p-2"
                         />
                       </div>
-                      <div className="px-4">
+                      <div className="ps-4">
                         <span className="fw-bold pr-5">Phone:</span> 7483647173
                       </div>
                     </div>
-                    <div className="d-flex align-items-center my-4">
+                    <div className="d-flex my-4 align-items-center">
                       <div class="circle-icon-container">
                         <img
                           src={locationIcon}
@@ -361,9 +385,9 @@ const handleSubmit = (e) => {
                           class="circle-icon p-2"
                         />
                       </div>
-                      <div className="px-4">
-                        <span className="fw-bold pr-5">Address:</span>{" "}
-                        Sirsi(U.K)
+                      <div className="ps-4">
+                        <span className="fw-bold pe-2">Address:</span>
+                        Siddapur, Karnataka , India
                       </div>
                     </div>
                   </div>
