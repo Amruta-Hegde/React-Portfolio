@@ -2,10 +2,10 @@ import React, { useRef, useState } from "react";
 import "./Home.css";
 import myPhoto from "../assets/images/myphoto.jpg";
 import htmlIcon from "../assets/images/html.png";
-import cssIcon from "../assets/images/css.png";
+import cssIcon from "../assets/images/css-icon.webp";
 import jsIcon from "../assets/images/js.png";
 import reactIcon from "../assets/images/React-icon.svg.png";
-import scssIcon from "../assets/images/scss.png";
+import TsIcon from "../assets/images/Typescript-icon.png";
 import phpIcon from "../assets/images/php.png";
 import wordPressIcon from "../assets/images/wordpress.png";
 import gitIcon from "../assets/images/Git-Icon.png";
@@ -14,6 +14,7 @@ import emailIcon from "../assets/images/email.webp";
 import phoneIcon from "../assets/images/phone.png";
 import locationIcon from "../assets/images/location-sign.svg";
 import Header from "../components/Header/Header";
+import resumeDocument from "../resume/Amruta-Hegde-Reume.pdf";
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -32,9 +33,33 @@ const Home = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
+  const handleSubmit = async () => {
+    console.log("submitted");
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.mobileNumber,
+      company: formData.companyName,
+      message: formData.message,
+    };
+
+    try {
+      const response = await fetch("http://localhost:5000/api/v1/form/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        console.log("Error");
+      } else {
+        console.log("Message sent successfully!");
+      }
+    } catch (error) {
+      console.error("There was an error sending the message:", error.message);
+    }
   };
 
   const skills = [
@@ -115,16 +140,17 @@ const Home = () => {
                   width={50}
                   height={50}
                 />
+
                 <img
-                  src={scssIcon}
-                  alt="scss-icon"
+                  src={jsIcon}
+                  alt="js-icon"
                   className="img-fluid mx-2 mx-lg-3 my-3"
                   width={50}
                   height={50}
                 />
                 <img
-                  src={jsIcon}
-                  alt="js-icon"
+                  src={TsIcon}
+                  alt="scss-icon"
                   className="img-fluid mx-2 mx-lg-3 my-3"
                   width={50}
                   height={50}
@@ -214,10 +240,11 @@ const Home = () => {
                   <button className="px-4 py-3 my-5 dwnld-btn">
                     <a
                       className="text-light text-decoration-none"
-                      href="../resume/Amruta-Hegde-Reume.pdf"
+                      href={resumeDocument}
                       target="_blank"
+                      rel="noreferrer"
                     >
-                      Download Resume
+                      Download PDF
                     </a>
                   </button>
                 </div>
