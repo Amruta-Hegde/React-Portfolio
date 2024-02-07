@@ -5,18 +5,15 @@ const formSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Please enter your name'],
-        unique: true,
     },
     email: {
         type: String,
         required: [true,'Please enter your email'],
         validate: [validator.isEmail, "Please provide a valid email address"],
-        unique: true,
     },
     phone: {
         type: Number,
         required: [true, 'Please enter your phone number'],
-        unique: true,
         minLength: [10, "Phone number must be at least 10 characters long"],
         maxLength: [10, "Phone number cannot exceed 10 characters"],
     },
