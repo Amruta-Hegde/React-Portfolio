@@ -13,7 +13,7 @@ const mongoURL = process.env.MONGOURL;
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000","https://react-portfolio-oo89.vercel.app"],
     methods: ["POST", "GET"],
     credentials: true,
   })
