@@ -15,6 +15,7 @@ import phoneIcon from "../assets/images/phone.png";
 import locationIcon from "../assets/images/location-sign.svg";
 import Header from "../components/Header/Header";
 import resumeDocument from "../resume/Amruta-Hegde-Reume.pdf";
+import emailjs from "@emailjs/browser";
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const Home = () => {
     email: "",
     mobileNumber: "",
     companyName: "",
-    message: "",
+    content: "",
   });
   const homeRef = useRef(null);
   const skillRef = useRef(null);
@@ -40,7 +41,7 @@ const Home = () => {
       email: formData.email,
       phone: formData.mobileNumber,
       company: formData.companyName,
-      message: formData.message,
+      message: formData.content,
     };
 
     try {
@@ -55,10 +56,30 @@ const Home = () => {
       if (!response.ok) {
         console.log("Error");
       } else {
-        console.log("Message sent successfully!");
+        console.log("content sent successfully!");
+        const templateParams = {
+          name: formData.name,
+          companyName: formData.companyName,
+          email: formData.email,
+          content: formData.content,
+        };
+        
+
+        emailjs
+          .send("service_o6a64hj", "template_webuasl", templateParams, {
+            publicKey: "5RD08CnXvKCxT45Y8",
+          })
+          .then(
+            (response) => {
+              console.log("SUCCESS!", response.status, response.text);
+            },
+            (err) => {
+              console.log("FAILED...", err);
+            }
+          );
       }
     } catch (error) {
-      console.error("There was an error sending the message:", error.message);
+      console.error("There was an error sending the content:", error.content);
     }
   };
 
@@ -322,7 +343,7 @@ const Home = () => {
               <div className="row box-shadow">
                 <div className="col-lg-6 ol-md-5 dark-purple-bg">
                   <div className="py-4 px-3">
-                    <h4 className="text-white py-3">Send Message</h4>
+                    <h4 className="text-white py-3">Send content</h4>
                     <div className="form-group">
                       <input
                         type="text"
@@ -359,9 +380,9 @@ const Home = () => {
                       <textarea
                         rows="4"
                         className="form-control transparent-input my-4"
-                        placeholder="Message"
-                        name="message"
-                        value={formData.message}
+                        placeholder="content"
+                        name="content"
+                        value={formData.content}
                         onChange={handleChange}
                       ></textarea>
                       <button
@@ -377,7 +398,7 @@ const Home = () => {
                   <div className="p-3 p-xl-5">
                     <h4 className="">Contact Me</h4>
                     <p className="pt-3">
-                      We're open for any suggestion or just to have a chat
+                    Let's Connect: Reach Out and Let's Start a Conversation
                     </p>
                     <div className="d-flex align-items-center my-4">
                       <div class="circle-icon-container">
