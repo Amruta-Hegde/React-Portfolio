@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import "./Home.css";
-import myPhoto from "../assets/images/myphoto.jpg";
+import myPhoto from "../assets/images/Amruta Hegde.png";
 import htmlIcon from "../assets/images/html.png";
 import cssIcon from "../assets/images/css-icon.webp";
 import jsIcon from "../assets/images/js.png";
@@ -16,8 +16,17 @@ import locationIcon from "../assets/images/location-sign.svg";
 import Header from "../components/Header/Header";
 import resumeDocument from "../resume/Amruta-Hegde-Reume.pdf";
 import emailjs from "@emailjs/browser";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const LoaderOverlay = () => (
+  <div className="loader-overlay">
+    <div className="loader"></div>
+  </div>
+);
 
 const Home = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,17 +34,56 @@ const Home = () => {
     companyName: "",
     content: "",
   });
+  const [errors, setErrors] = useState({
+    email: "",
+    mobileNumber: "",
+  });
   const homeRef = useRef(null);
   const skillRef = useRef(null);
   const aboutRef = useRef(null);
   const contactRef = useRef(null);
+  const scrollToRef = (ref) => {
+    window.scrollTo({
+      top: ref.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+
+    if (name === "email") {
+      if (!validateEmail(value)) {
+        setErrors({ ...errors, email: "Invalid email format" });
+      } else {
+        setErrors({ ...errors, email: "" });
+      }
+    } else if (name === "mobileNumber") {
+      if (!validateMobileNumber(value)) {
+        setErrors({
+          ...errors,
+          mobileNumber: "Mobile number should be 10 digits",
+        });
+      } else {
+        setErrors({ ...errors, mobileNumber: "" });
+      }
+    }
+  };
+
+  const validateEmail = (email) => {
+    // Regular expression for email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+  const validateMobileNumber = (mobileNumber) => {
+    // Check if mobile number is 10 digits
+    return /^\d{10}$/.test(mobileNumber);
   };
 
   const handleSubmit = async () => {
-    console.log("submitted");
+    setLoading(true);
+
     const payload = {
       name: formData.name,
       email: formData.email,
@@ -54,16 +102,17 @@ const Home = () => {
       });
 
       if (!response.ok) {
-        console.log("Error");
+        setLoading(false); // Stop loading on error
+        toast.error("Error sending content!");
       } else {
-        console.log("content sent successfully!");
+        toast.success("Content sent successfully!");
+
         const templateParams = {
           name: formData.name,
           companyName: formData.companyName,
           email: formData.email,
           content: formData.content,
         };
-        
 
         emailjs
           .send("service_o6a64hj", "template_webuasl", templateParams, {
@@ -77,12 +126,15 @@ const Home = () => {
               console.log("FAILED...", err);
             }
           );
+
+        setLoading(false);
       }
     } catch (error) {
+      setLoading(false);
+      toast.error("There was an error sending the content.");
       console.error("There was an error sending the content:", error.content);
     }
   };
-
   const skills = [
     { name: "HTML", percentage: 100 },
     { name: "CSS", percentage: 90 },
@@ -102,22 +154,53 @@ const Home = () => {
         contactRef={contactRef}
       />
       {/* Poster */}
-      <div className="container">
-        <div className="text-bounce" ref={homeRef}>
-          <div className="row align-items-center">
-            <div className="col-md-7 col-sm-11 text-center">
-              <div className="d-flex align-items-center poster">
+      <div className="container pink-bg">
+        <ToastContainer />
+        {loading && <LoaderOverlay />}
+        <div className="" ref={homeRef}>
+          <div className="row align-items-center justify-content-between mt-5">
+            <div className="col-md-6 col-sm-11 text-start">
+              <div className="d-flex  poster ">
                 <div>
-                  <div className="heading-text">Hello !</div>
-                  <div className="animate-text">
-                    <div>I'm a Web Developer</div>
+                  <div className="heading-text orange-text fw-bold ">
+                    Hi! I'm
                   </div>
-                  <div className="heading-text">Code. Create. Inspire</div>
+                  <div className="animate-text">
+                    <div>Amruta Hegde</div>
+                  </div>
+                  <div className="heading-text blue-text">
+                    Front End Developer
+                  </div>
+                  <div className="col-10">
+                    <p className="mt-3 ">
+                      Passionate about translating ideas into visually stunning
+                      and functional web applications, with a focus on
+                      performance and accessibility.
+                    </p>
+                    <div className="d-flex">
+                      <button className="orange-btn my-3 me-4 px-5 py-3">
+                        <a
+                          className="text-light text-decoration-none"
+                          href={resumeDocument}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Download CV
+                        </a>
+                      </button>
+                      <button
+                        className="orange-transp-btn my-3 me-4 px-5 py-3"
+                        onClick={() => scrollToRef(contactRef)}
+                      >
+                        Contact
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div className="col-md-5 col-sm-11">
-              <div className="d-flex align-items-center poster my-5 ">
+              <div className="d-flex justify-content-end poster mt-5 ">
                 <img
                   src={myPhoto}
                   alt="myphoto"
@@ -130,6 +213,92 @@ const Home = () => {
       </div>
       {/* About Me */}
 
+      {/* <div class=" p-4">
+        <div class="container support-items">
+          <div class="row justify-content-around align-items-center">
+            <div class="col-lg-2 col-md-5 col-sm-12 mb-4 mb-md-0">
+              <div class="d-flex align-items-center py-3 ps-4">
+                <h1 class="blue-text font-size-58">2</h1>
+                <h5 class="blue-text fw-bold px-3">YEARS OF EXPERIENCE</h5>
+              </div>
+            </div>
+            <div class="col-lg-2 col-md-5 col-sm-12 mb-4 mb-md-0">
+              <div class="d-flex align-items-center py-3 ps-4">
+                <h1 class="blue-text font-size-58">7</h1>
+                <h5 class="blue-text fw-bold px-3">PROJECTS COMPLETED</h5>
+              </div>
+            </div>
+            <div class="col-lg-7 col-md-12 col-sm-12">
+              <div class="d-flex flex-wrap flex-xl-nowrap">
+                <img
+                  src={htmlIcon}
+                  alt="html-icon"
+                  className="img-fluid mx-2 mx-lg-3 my-3"
+                  width={50}
+                  height={50}
+                />
+                <img
+                  src={cssIcon}
+                  alt="css-icon"
+                  className="img-fluid mx-2 mx-lg-3 my-3"
+                  width={50}
+                  height={50}
+                />
+
+                <img
+                  src={jsIcon}
+                  alt="js-icon"
+                  className="img-fluid mx-2 mx-lg-3 my-3"
+                  width={50}
+                  height={50}
+                />
+                <img
+                  src={TsIcon}
+                  alt="scss-icon"
+                  className="img-fluid mx-2 mx-lg-3 my-3"
+                  width={50}
+                  height={50}
+                />
+                <img
+                  src={reactIcon}
+                  alt="react-icon"
+                  className="img-fluid mx-2 mx-lg-3 my-3"
+                  width={50}
+                  height={50}
+                />
+                <img
+                  src={phpIcon}
+                  alt="php-icon"
+                  className="img-fluid mx-2 mx-lg-3 my-3"
+                  width={50}
+                  height={50}
+                />
+                <img
+                  src={wordPressIcon}
+                  alt="wordpress-icon"
+                  className="img-fluid mx-2 mx-lg-3 my-3"
+                  width={50}
+                  height={50}
+                />
+                <img
+                  src={gitIcon}
+                  alt="git-icon"
+                  className="img-fluid mx-2 mx-lg-3 my-3"
+                  width={50}
+                  height={50}
+                />
+                <img
+                  src={jiraICon}
+                  alt="jira-icon"
+                  className="img-fluid mx-2 mx-lg-3 my-3"
+                  width={50}
+                  height={50}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> */}
       <div class="experience-bg p-4">
         <div class="container">
           <div class="row justify-content-between align-items-center">
@@ -361,6 +530,9 @@ const Home = () => {
                         value={formData.email}
                         onChange={handleChange}
                       />
+                      {errors.email && (
+                        <div className="invalid-feedback">{errors.email}</div>
+                      )}
                       <input
                         type="text"
                         className="form-control transparent-input my-4"
@@ -369,6 +541,12 @@ const Home = () => {
                         value={formData.mobileNumber}
                         onChange={handleChange}
                       />
+                      {errors.mobileNumber && (
+                        <div className="invalid-feedback">
+                          {errors.mobileNumber}
+                        </div>
+                      )}
+
                       <input
                         type="text"
                         className="form-control transparent-input my-4"
@@ -380,7 +558,7 @@ const Home = () => {
                       <textarea
                         rows="4"
                         className="form-control transparent-input my-4"
-                        placeholder="content"
+                        placeholder="Message"
                         name="content"
                         value={formData.content}
                         onChange={handleChange}
@@ -398,7 +576,7 @@ const Home = () => {
                   <div className="p-3 p-xl-5">
                     <h4 className="">Contact Me</h4>
                     <p className="pt-3">
-                    Let's Connect: Reach Out and Let's Start a Conversation
+                      Let's Connect: Reach Out and Let's Start a Conversation
                     </p>
                     <div className="d-flex align-items-center my-4">
                       <div class="circle-icon-container">

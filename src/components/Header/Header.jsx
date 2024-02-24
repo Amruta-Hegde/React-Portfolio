@@ -37,14 +37,15 @@ function Header({ homeRef, skillRef, aboutRef, contactRef }) {
   return (
     <Navbar collapseOnSelect expand="lg" className="sticky-top">
       <Container>
-        <Navbar.Brand  className="fw-bold" onClick={() => scrollToRef(homeRef)}>Amruta Hegde</Navbar.Brand>
+        <Navbar.Brand  className="fw-bold" onClick={() => scrollToRef(homeRef)}>My Portfolio <span className="dot"></span></Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-            <Nav.Link className={`px-3 ${activeItem === 'HOME' ? 'active' : ''}`} onClick={() => scrollToRef(homeRef)}>HOME</Nav.Link>
-            <Nav.Link className={`px-3 ${activeItem === 'ABOUT' ? 'active' : ''}`} onClick={() => scrollToRef(aboutRef)}>ABOUT</Nav.Link>
-            <Nav.Link className={`px-3 ${activeItem === 'SKILLS' ? 'active' : ''}`} onClick={() => scrollToRef(skillRef)}>SKILLS</Nav.Link>
-            <Nav.Link className={`px-3 ${activeItem === 'CONTACT' ? 'active' : ''}`} onClick={() => scrollToRef(contactRef)}>CONTACT</Nav.Link>
+            <Nav.Link className={`pe-4 ${activeItem === 'HOME' ? 'active' : ''}`} onClick={() => scrollToRef(homeRef)}>Home</Nav.Link>
+            <Nav.Link className={`px-4 ${activeItem === 'ABOUT' ? 'active' : ''}`} onClick={() => scrollToRef(aboutRef)}>About</Nav.Link>
+            <Nav.Link className={`px-4 ${activeItem === 'SKILLS' ? 'active' : ''}`} onClick={() => scrollToRef(skillRef)}>Skills</Nav.Link>
+            <Nav.Link className={`px-4 ${activeItem === 'PROJECTS' ? 'active' : ''}`} onClick={() => scrollToRef(skillRef)}>Projects</Nav.Link>
+            <Nav.Link className={`ps-4 ${activeItem === 'CONTACT' ? 'active' : ''}`} onClick={() => scrollToRef(contactRef)}>Contact</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
