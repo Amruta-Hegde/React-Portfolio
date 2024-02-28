@@ -1,0 +1,80 @@
+.timeline-container {
+  margin: 0 auto;
+}
+
+.timeline {
+  position: relative;
+  padding: 1em 0;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  opacity: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #999999;
+  border-radius: 50%;
+  top: 5%;
+  left: -5px;
+  transform: translateY(-50%);
+}
+.timeline-dot :hover {
+  background-color: #14c5fd !important;
+}
+.timeline-content {
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-content h3 {
+  margin-top: 0;
+  color: #fff;
+}
+.timeline-content h3:hover {
+  color: #14c5fd;
+}
+
+/* Animation */
+.fadeIn {
+  opacity: 1;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.line {
+  position: absolute;
+  top: 0;
+  left: 0%;
+  width: 1px;
+  height: 90%;
+  background-color: #999999;
+}
+
+/* Animation for the line */
+.line {
+  animation: drawLine 0.5s ease forwards;
+}
+
+@keyframes drawLine {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}

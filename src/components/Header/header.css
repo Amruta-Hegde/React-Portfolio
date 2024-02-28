@@ -1,41 +1,98 @@
-nav {
-  background: linear-gradient(50deg, #8121d0, #331c52);
+.modal.drawer {
+  display: flex !important;
+  pointer-events: none;
 }
-.navbar-light .navbar-nav .nav-link {
-  color: white;
-  font-weight: 500;
+.modal.drawer * {
+  pointer-events: none;
 }
-.navbar-light .navbar-nav .nav-link:hover {
-  color: white;
-  font-weight: 500;
-}
-.navbar-light .navbar-nav .nav-link:focus {
-  color: white;
-  font-weight: 500;
-}
-.navbar-light .navbar-brand {
-  color: white !important;
+.modal.fade.show {
+  background-color: rgba(31, 31, 31, 0.5);
 }
 
-@media (min-width: 992px) {
-  .navbar-expand-lg .navbar-collapse {
-    display: flex !important;
-    justify-content: flex-end !important;
-  }
+.modal.drawer .modal-dialog {
+  margin: 0px;
+  display: flex;
+  flex: auto;
+  transform: translate(25%, 0);
+  max-width: 300px;
 }
-.navbar-toggler {
-  padding: 0.2rem 0.7rem;
-  font-size: 1.25rem;
-  line-height: 1;
+
+.modal.drawer .modal-dialog .modal-content {
+  background: black;
+  height: 100%;
+}
+.modal.drawer .modal-dialog .modal-content .modal-body {
+  overflow: auto;
+}
+.modal.drawer.show {
+  pointer-events: auto;
+}
+.modal.drawer.show * {
+  pointer-events: auto;
+}
+.modal.drawer.show .modal-dialog {
+  transform: translate(0, 0);
+}
+.modal.drawer.right-align {
+  flex-direction: row-reverse;
+}
+.modal.drawer.left-align:not(.show) .modal-dialog {
+  transform: translate(-25%, 0);
+}
+
+.circle {
+  position: fixed;
+  margin-top: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
-  background-color: white;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  transition: box-shadow 0.15s ease-in-out;
+  cursor: pointer;
+  z-index: 100 !important;
+}
+
+.hamburger-icon {
+  color: white !important;
+}
+.close-icon {
+  font-size: 28px;
+  cursor: pointer;
+  color: white !important;
+}
+.menu-icons {
+  font-size: 22px;
+  color: white;
+}
+li :hover {
+  color: #14c5fd;
+}
+li {
+  color: white;
 }
 .active {
-  color: rgb(250, 123, 76) !important;
+  color: #14c5fd;
 }
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
+}
+.menu-bar {
+  top: 30%;
+  right: 4%;
+  position: fixed;
+  border: 1px solid gray;
+  border-radius: 50px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .circle {
+    right: 50px !important;
+  }
+  .menu-bar {
+    visibility: hidden !important;
+    opacity: 0;
+  }
 }
