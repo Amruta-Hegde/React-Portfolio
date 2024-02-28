@@ -152,8 +152,9 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="text-center py-4">
-                  <h5 className="text-white">amrutahegde01@gmail.com</h5>
                   <h5 className="text-white">7483647173</h5>
+                  <h5 className="text-white">amrutahegde01@gmail.com</h5>
+
                   <h5 className="text-white">
                     Sirsi , Uttara Kannada ,Karnataka
                   </h5>
@@ -260,7 +261,7 @@ const Home = () => {
                     My <span className="color-skyblue">Advantages</span>
                   </h1>
                   <div className="row justify-content-between">
-                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
+                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
                         <img
                           src={htmlIcon}
@@ -270,7 +271,7 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">100%</h4>
                       </div>
                     </div>
-                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
+                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
                         <img
                           src={cssIcon}
@@ -280,7 +281,7 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">100%</h4>
                       </div>
                     </div>
-                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
+                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
                         <img
                           src={scssIcon}
@@ -292,7 +293,7 @@ const Home = () => {
                     </div>
                   </div>
                   <div className="row justify-content-between">
-                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
+                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
                         <img
                           src={jssIcon}
@@ -302,7 +303,7 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">100%</h4>
                       </div>
                     </div>
-                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
+                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
                         <img
                           src={tsIcon}
@@ -312,7 +313,7 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">100%</h4>
                       </div>
                     </div>
-                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
+                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
                         <img
                           src={reactIcon}
