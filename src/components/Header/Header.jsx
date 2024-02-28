@@ -105,7 +105,7 @@ function Header({ homeRef, skillRef, aboutRef,educationRef, contactRef }) {
                             className={`me-3 menu-icons ${
                               activeItem === "EDUCATION" ? "active" : ""
                             }`}
-                            onClick={() => scrollToRef(skillRef)}
+                            onClick={() => scrollToRef(educationRef)}
                           />{" "}
                           Education and Experience
                         </li>
@@ -169,7 +169,7 @@ function Header({ homeRef, skillRef, aboutRef,educationRef, contactRef }) {
                   className={` menu-icons ${
                     activeItem === "EDUCATION" ? "active" : ""
                   }`}
-                  onClick={() => scrollToRef(skillRef)}
+                  onClick={() => scrollToRef(educationRef)}
                 />
               </li>
               <li className="d-flex align-items-center cursor-pointer mt-4">

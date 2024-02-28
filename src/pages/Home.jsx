@@ -96,7 +96,12 @@ const Home = () => {
 
     }
   };
-
+  const scrollToRef = (ref) => {
+    window.scrollTo({
+      top: ref.current.offsetTop,
+      behavior: "smooth",
+    });
+  };
   // useEffect(() => {
   //   const observer = new IntersectionObserver((entries) => {
   //     entries.forEach((entry) => {
@@ -154,7 +159,7 @@ const Home = () => {
                   </h5>
                 </div>
                 <div className="mx-2">
-                  <button type="button" className="py-3 contact-btn">
+                  <button type="button" className="py-3 contact-btn"  onClick={() => scrollToRef(contactRef)}>
                     <MdOutlineMailOutline className="me-3 email-icon" /> Contact
                     Me
                   </button>
