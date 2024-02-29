@@ -10,10 +10,8 @@ import { BsInstagram } from "react-icons/bs";
 import { BsGithub } from "react-icons/bs";
 import { MdOutlineCastForEducation } from "react-icons/md";
 
-function Header({ homeRef, skillRef, aboutRef,educationRef, contactRef }) {
+function Header({ homeRef, skillRef, aboutRef, educationRef, contactRef }) {
   const [activeItem, setActiveItem] = useState("HOME");
-
-
 
   useEffect(() => {
     const handleScroll = (e) => {
@@ -21,24 +19,22 @@ function Header({ homeRef, skillRef, aboutRef,educationRef, contactRef }) {
         setActiveItem("HOME");
       } else if (
         aboutRef.current.offsetTop - window.scrollY < window.innerHeight / 2 &&
-        educationRef.current.offsetTop - window.scrollY >= window.innerHeight / 2
+        educationRef.current.offsetTop - window.scrollY >=
+          window.innerHeight / 2
       ) {
         setActiveItem("ABOUT");
-      }
-       else if (
-        educationRef.current.offsetTop - window.scrollY < window.innerHeight / 2 &&
+      } else if (
+        educationRef.current.offsetTop - window.scrollY <
+          window.innerHeight / 2 &&
         skillRef.current.offsetTop - window.scrollY >= window.innerHeight / 2
       ) {
         setActiveItem("EDUCATION");
-      } 
-       else if (
+      } else if (
         skillRef.current.offsetTop - window.scrollY < window.innerHeight / 2 &&
         contactRef.current.offsetTop - window.scrollY >= window.innerHeight / 2
       ) {
         setActiveItem("SKILLS");
-      } 
-     
-       else if (
+      } else if (
         contactRef.current.offsetTop - window.scrollY <
         window.innerHeight / 2
       ) {
@@ -82,49 +78,59 @@ function Header({ homeRef, skillRef, aboutRef,educationRef, contactRef }) {
                   <div className="col-11">
                     <div className="d-flex justify-content-center">
                       <ul className="my-5 list-unstyled ">
-                        <li className="d-flex align-items-center cursor-pointer mt-3">
+                        <li
+                          className="d-flex align-items-center cursor-pointer mt-3"
+                          onClick={() => scrollToRef(homeRef)}
+                        >
                           <AiOutlineHome
                             className={`me-3 menu-icons ${
                               activeItem === "HOME" ? "active" : ""
                             }`}
-                            onClick={() => scrollToRef(homeRef)}
                           />{" "}
                           Home
                         </li>
-                        <li className="d-flex align-items-center cursor-pointer mt-3">
+                        <li
+                          className="d-flex align-items-center cursor-pointer mt-3"
+                          onClick={() => scrollToRef(aboutRef)}
+                        >
                           <GoPerson
                             className={`me-3 menu-icons ${
                               activeItem === "ABOUT" ? "active" : ""
                             }`}
-                            onClick={() => scrollToRef(aboutRef)}
                           />{" "}
                           About
                         </li>
-                        <li className="d-flex align-items-center cursor-pointer mt-3">
+                        <li
+                          className="d-flex align-items-center cursor-pointer mt-3"
+                          onClick={() => scrollToRef(educationRef)}
+                        >
                           <MdOutlineCastForEducation
                             className={`me-3 menu-icons ${
                               activeItem === "EDUCATION" ? "active" : ""
                             }`}
-                            onClick={() => scrollToRef(educationRef)}
                           />{" "}
                           Education and Experience
                         </li>
-                        <li className="d-flex align-items-center cursor-pointer mt-3">
+                        <li
+                          className="d-flex align-items-center cursor-pointer mt-3"
+                          onClick={() => scrollToRef(skillRef)}
+                        >
                           <TbPuzzle
                             className={`me-3 menu-icons ${
                               activeItem === "SKILLS" ? "active" : ""
                             }`}
-                            onClick={() => scrollToRef(skillRef)}
                           />{" "}
                           Skills
                         </li>
-                       
-                        <li className="d-flex align-items-center cursor-pointer mt-3">
+
+                        <li
+                          className="d-flex align-items-center cursor-pointer mt-3"
+                          onClick={() => scrollToRef(contactRef)}
+                        >
                           <GrContact
                             className={`me-3  ${
                               activeItem === "CONTACT" ? "active" : ""
                             }`}
-                            onClick={() => scrollToRef(contactRef)}
                           />{" "}
                           Contact
                         </li>
@@ -180,7 +186,7 @@ function Header({ homeRef, skillRef, aboutRef,educationRef, contactRef }) {
                   onClick={() => scrollToRef(skillRef)}
                 />
               </li>
-             
+
               <li className="d-flex align-items-center cursor-pointer mt-4">
                 <GrContact
                   className={` ${activeItem === "CONTACT" ? "active" : ""}`}

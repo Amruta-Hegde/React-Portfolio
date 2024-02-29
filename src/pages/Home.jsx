@@ -270,6 +270,7 @@ const Home = () => {
                         />
                         <h4 className="text-center color-skyblue pb-4">100%</h4>
                       </div>
+                      <div className="text-center text-white">HTML</div>
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
@@ -280,6 +281,8 @@ const Home = () => {
                         />
                         <h4 className="text-center color-skyblue pb-4">100%</h4>
                       </div>
+                      <div className="text-center text-white">CSS</div>
+
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
@@ -290,6 +293,8 @@ const Home = () => {
                         />
                         <h4 className="text-center color-skyblue pb-4">100%</h4>
                       </div>
+                      <div className="text-center text-white">SCSS</div>
+
                     </div>
                   </div>
                   <div className="row justify-content-between">
@@ -300,8 +305,10 @@ const Home = () => {
                           alt="js"
                           className="img-fluid mt-3 p-4"
                         />
-                        <h4 className="text-center color-skyblue pb-4">100%</h4>
+                        <h4 className="text-center color-skyblue pb-4">90%</h4>
                       </div>
+                      <div className="text-center text-white">JS</div>
+
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
@@ -310,8 +317,10 @@ const Home = () => {
                           alt="ts"
                           className="img-fluid mt-3 p-4"
                         />
-                        <h4 className="text-center color-skyblue pb-4">100%</h4>
+                        <h4 className="text-center color-skyblue pb-4">80%</h4>
                       </div>
+                      <div className="text-center text-white">TS</div>
+
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
@@ -320,8 +329,10 @@ const Home = () => {
                           alt="react"
                           className="img-fluid mt-3 p-4"
                         />
-                        <h4 className="text-center color-skyblue pb-4">100%</h4>
+                        <h4 className="text-center color-skyblue pb-4">80%</h4>
                       </div>
+                      <div className="text-center text-white">React Js</div>
+
                     </div>
                   </div>
                   <div className="row justify-content-between">
@@ -332,8 +343,10 @@ const Home = () => {
                           alt="wordpressIcon"
                           className="img-fluid mt-3 p-4"
                         />
-                        <h4 className="text-center color-skyblue pb-4">100%</h4>
+                        <h4 className="text-center color-skyblue pb-4">60%</h4>
                       </div>
+                      <div className="text-center text-white">Wordpress</div>
+
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
                       <div className="skill-inner my-4  text-center">
@@ -342,8 +355,10 @@ const Home = () => {
                           alt="jira"
                           className="img-fluid mt-3 p-4"
                         />
-                        <h4 className="text-center color-skyblue pb-4">100%</h4>
+                        <h4 className="text-center color-skyblue pb-4">80%</h4>
                       </div>
+                      <div className="text-center text-white">Jira</div>
+
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
                       <div className="skill-inner my-4  text-center">
@@ -352,8 +367,10 @@ const Home = () => {
                           alt="git"
                           className="img-fluid mt-3 p-4"
                         />
-                        <h4 className="text-center color-skyblue pb-4">100%</h4>
+                        <h4 className="text-center color-skyblue pb-4">80%</h4>
                       </div>
+                      <div className="text-center text-white">Git</div>
+
                     </div>
                   </div>
                   <div className="row justify-content-between">
@@ -364,8 +381,10 @@ const Home = () => {
                           alt="wordpressIcon"
                           className="img-fluid mt-3 p-4"
                         />
-                        <h4 className="text-center color-skyblue pb-4">100%</h4>
+                        <h4 className="text-center color-skyblue pb-4">80%</h4>
                       </div>
+                      <div className="text-center text-white">Azure Devops</div>
+
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
                       <div className="skill-inner my-4  text-center">
@@ -374,8 +393,10 @@ const Home = () => {
                           alt="jira"
                           className="img-fluid mt-3 p-4"
                         />
-                        <h4 className="text-center color-skyblue pb-4">100%</h4>
+                        <h4 className="text-center color-skyblue pb-4">40%</h4>
                       </div>
+                      <div className="text-center text-white">Next Js</div>
+
                     </div>
                   </div>
                 </div>
