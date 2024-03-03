@@ -50,29 +50,28 @@
   cursor: pointer;
   border: 2px solid #565656;
 }
-.email-icon{
+.email-icon {
   font-size: 20px;
 }
 
-
-.f-12{
+.f-12 {
   font-size: 12px;
   font-weight: 300;
 }
-.menu-card{
+.menu-card {
   position: relative;
   border: 1px solid gray;
   border-radius: 50px;
   width: fit-content;
 }
-.color-skyblue{
+.color-skyblue {
   color: #14c5fd !important;
 }
-.f-72{
+.f-72 {
   font-size: 72px;
   font-weight: 400;
 }
-.margin-top{
+.margin-top {
   margin-top: 160px;
 }
 
@@ -91,29 +90,6 @@
 .fade-up {
   animation: fadeUp 0.5s ease-in-out;
 }
-
-.skill-inner {
-  border: 2px solid #565656;
-  border-radius: 85px;
-  margin-bottom: 20px;
-  transition: .3s;
-}
-.skill-inner:hover{
-  border: 2px solid #14c5fd;
-
-}
-/* .send-btn {
-  background-color: #fff;
-  color: #231557 !important;
-  font-weight: 500;
-  font-size: 18px !important;
-}
-.send-btn:hover {
-  background-color: #dfd6f7;
-  color: #231557 !important;
-  font-weight: 500;
-  font-size: 18px !important;
-} */
 
 .transparent-input {
   background-color: transparent;
@@ -151,6 +127,10 @@
   width: 100%;
   height: auto;
 }
+.error-message {
+  color: red;
+  font-size: 16px;
+}
 
 @media only screen and (max-width: 600px) {
   .profile-card {
@@ -161,7 +141,7 @@
     width: 100%;
     /* position: relative !important; */
   }
-  .heading{
+  .heading {
     font-size: 48px;
     font-weight: 300;
   }
@@ -175,9 +155,19 @@
     height: 90vh;
     width: 90%;
   }
-  .heading{
+  .heading {
     font-size: 58px;
     font-weight: 300;
+  }
+  .skill-inner {
+    border: 2px solid #565656;
+    border-radius: 85px;
+    margin-bottom: 20px;
+    transition: 0.3s;
+    min-height: 240px;
+  }
+  .skill-inner:hover {
+    border: 2px solid #14c5fd;
   }
 }
 @media only screen and (min-width: 1000px) {
@@ -190,14 +180,14 @@
     width: 25%;
     position: fixed !important;
   }
-  .heading{
+  .heading {
     font-size: 64px;
     font-weight: 300;
   }
-  .min-height{
+  .min-height {
     min-height: 85vh;
   }
-  .min-height-100{
+  .min-height-100 {
     min-height: 100vh;
   }
 }

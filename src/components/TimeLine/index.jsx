@@ -61,8 +61,8 @@ const Timeline = () => {
             <div className="timeline-dot mt-2"></div>
             <div className={`timeline-content mx-3 ${index === education.length - 1 ? '' : 'mb-5'}`}>
               <h3 className="">{edu.title}</h3>
-              <div className="d-flex">
-                <div>{edu.university}</div> <div className=" color-skyblue ms-3">{edu.year}</div>
+              <div className="d-flex flex-wrap">
+                <div className="me-3">{edu.university}</div> <div className=" color-skyblue">{edu.year}</div>
               </div>
               <p>{edu.score}</p>
             </div>

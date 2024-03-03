@@ -21,9 +21,10 @@ import jiraIcon from "../assets/images/jira.png";
 import gitIcon from "../assets/images/Git-Icon.png";
 import wordpressIcon from "../assets/images/wordpress.png";
 import nextjsIcon from "../assets/images/nextjs.png";
+import mongoDBIcon from "../assets/images/mongodb-icon.png";
 import azureIcon from "../assets/images/devops.png";
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +34,10 @@ const Home = () => {
     companyName: "",
     content: "",
   });
+  const [errors, setErrors] = useState({
+    email: "",
+    mobileNumber: "",
+  });
   const homeRef = useRef(null);
   const skillRef = useRef(null);
   const aboutRef = useRef(null);
@@ -41,8 +46,24 @@ const Home = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    let errorMessage = "";
+
+    // Validate mobile number
+    if (name === "mobileNumber") {
+      const isValidMobile = /^\d{0,10}$/.test(value);
+      errorMessage = isValidMobile ? "" : "Mobile number should be 10 digits";
+    }
+
+    // Validate email
+    if (name === "email") {
+      const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      errorMessage = isValidEmail ? "" : "Invalid email format";
+    }
+
+    setErrors({ ...errors, [name]: errorMessage });
     setFormData({ ...formData, [name]: value });
   };
+
   let base_local_url = "http://localhost:5000";
   let base_app_url = "https://react-portfolio-one-inky.vercel.app";
 
@@ -67,8 +88,10 @@ const Home = () => {
 
       if (!response.ok) {
         console.log("Error");
-        toast.error("Unable to contact");
+        toast.error("Unable to contact, Please fill all the required fields");
       } else {
+        scrollToRef(homeRef);
+
         const templateParams = {
           name: formData.name,
           companyName: formData.companyName,
@@ -84,16 +107,41 @@ const Home = () => {
             (response) => {
               console.log("SUCCESS!", response.status, response.text);
               toast.success("Your message sent successfully.");
+              scrollToRef(homeRef);
+              setFormData({
+                name: "",
+                email: "",
+                mobileNumber: "",
+                companyName: "",
+                content: "",
+              });
             },
             (err) => {
               console.log("FAILED...", err);
+              scrollToRef(homeRef);
+
+              setFormData({
+                name: "",
+                email: "",
+                mobileNumber: "",
+                companyName: "",
+                content: "",
+              });
             }
           );
       }
     } catch (error) {
       console.error("There was an error sending the content:", error.content);
       toast.error("There was an error sending the content");
+      scrollToRef(homeRef);
 
+      setFormData({
+        name: "",
+        email: "",
+        mobileNumber: "",
+        companyName: "",
+        content: "",
+      });
     }
   };
   const scrollToRef = (ref) => {
@@ -102,21 +150,10 @@ const Home = () => {
       behavior: "smooth",
     });
   };
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver((entries) => {
-  //     entries.forEach((entry) => {
-  //       if (entry.isIntersecting) {
-  //         entry.target.classList.add("fadeIn");
-  //       }
-  //     });
-  //   });
 
-  //   observer.observe(skillRef.current);
-
-  //   return () => observer.disconnect();
-  // }, []);
   return (
     <div className="body-bg ">
+      <ToastContainer />
       <div>
         <div className="row justify-content-end">
           {/* Menu Bar */}
@@ -160,7 +197,11 @@ const Home = () => {
                   </h5>
                 </div>
                 <div className="mx-2">
-                  <button type="button" className="py-3 contact-btn"  onClick={() => scrollToRef(contactRef)}>
+                  <button
+                    type="button"
+                    className="py-3 contact-btn"
+                    onClick={() => scrollToRef(contactRef)}
+                  >
                     <MdOutlineMailOutline className="me-3 email-icon" /> Contact
                     Me
                   </button>
@@ -282,7 +323,6 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">100%</h4>
                       </div>
                       <div className="text-center text-white">CSS</div>
-
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
@@ -294,7 +334,6 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">100%</h4>
                       </div>
                       <div className="text-center text-white">SCSS</div>
-
                     </div>
                   </div>
                   <div className="row justify-content-between">
@@ -308,7 +347,6 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">90%</h4>
                       </div>
                       <div className="text-center text-white">JS</div>
-
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
@@ -320,7 +358,6 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">80%</h4>
                       </div>
                       <div className="text-center text-white">TS</div>
-
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-5">
                       <div className="skill-inner my-4  text-center">
@@ -332,7 +369,6 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">80%</h4>
                       </div>
                       <div className="text-center text-white">React Js</div>
-
                     </div>
                   </div>
                   <div className="row justify-content-between">
@@ -346,7 +382,6 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">60%</h4>
                       </div>
                       <div className="text-center text-white">Wordpress</div>
-
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
                       <div className="skill-inner my-4  text-center">
@@ -358,7 +393,6 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">80%</h4>
                       </div>
                       <div className="text-center text-white">Jira</div>
-
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
                       <div className="skill-inner my-4  text-center">
@@ -370,7 +404,6 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">80%</h4>
                       </div>
                       <div className="text-center text-white">Git</div>
-
                     </div>
                   </div>
                   <div className="row justify-content-between">
@@ -384,7 +417,6 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">80%</h4>
                       </div>
                       <div className="text-center text-white">Azure Devops</div>
-
                     </div>
                     <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
                       <div className="skill-inner my-4  text-center">
@@ -396,7 +428,17 @@ const Home = () => {
                         <h4 className="text-center color-skyblue pb-4">40%</h4>
                       </div>
                       <div className="text-center text-white">Next Js</div>
-
+                    </div>
+                    <div className="col-xl-3 col-lg-4 col-md-5 col-sm-8">
+                      <div className="skill-inner my-4  text-center">
+                        <img
+                          src={mongoDBIcon}
+                          alt="MongoDB"
+                          className="img-fluid mt-3 p-4"
+                        />
+                        <h4 className="text-center color-skyblue pb-4">40%</h4>
+                      </div>
+                      <div className="text-center text-white">MongoDB</div>
                     </div>
                   </div>
                 </div>
@@ -416,7 +458,7 @@ const Home = () => {
                             <input
                               type="text"
                               className="form-control transparent-input my-4"
-                              placeholder="Name"
+                              placeholder="Name *"
                               name="name"
                               value={formData.name}
                               onChange={handleChange}
@@ -424,23 +466,33 @@ const Home = () => {
                             <input
                               type="text"
                               className="form-control transparent-input my-4"
-                              placeholder="Email"
+                              placeholder="Email *"
                               name="email"
                               value={formData.email}
                               onChange={handleChange}
                             />
+                            {errors.email && (
+                              <div className="error-message">
+                                {errors.email}
+                              </div>
+                            )}
                             <input
                               type="text"
                               className="form-control transparent-input my-4"
-                              placeholder="Mobile Number"
+                              placeholder="Mobile Number *"
                               name="mobileNumber"
                               value={formData.mobileNumber}
                               onChange={handleChange}
                             />
+                            {errors.mobileNumber && (
+                              <div className="error-message">
+                                {errors.mobileNumber}
+                              </div>
+                            )}
                             <input
                               type="text"
                               className="form-control transparent-input my-4"
-                              placeholder="Company Name"
+                              placeholder="Company Name *"
                               name="companyName"
                               value={formData.companyName}
                               onChange={handleChange}
@@ -448,7 +500,7 @@ const Home = () => {
                             <textarea
                               rows="4"
                               className="form-control transparent-input my-4"
-                              placeholder="content"
+                              placeholder="content *"
                               name="content"
                               value={formData.content}
                               onChange={handleChange}
